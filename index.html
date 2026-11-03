@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MedHOT · 中国医药市场的每日热点站</title>
+<meta name="description" content="41 个信源自动采集，AI 精选打分。盯的是中国医药市场的公司动态、集采与准入，给药企市场、销售与准入人员每天五分钟。">
+<meta name="theme-color" content="#0e1a26">
+<meta property="og:type" content="website">
+<meta property="og:title" content="MedHOT · 中国医药市场的每日热点站">
+<meta property="og:description" content="41 个信源自动采集，AI 精选打分。盯的是公司动态、集采与准入，不是学术期刊。">
+<meta property="og:image" content="https://lubiny0601-spec.github.io/medhot-showcase/og-site.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='116' fill='%230f1720'/%3E%3Cpath d='M256 92C271 199 313 241 420 256C313 271 271 313 256 420C241 313 199 271 92 256C199 241 241 199 256 92Z' fill='%237fb0e0'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --bg:#f5f7fa;
+    --surface:#ffffff;
+    --ink:#161d27;
+    --ink-2:#4a5766;
+    --ink-3:#7d8a99;
+    --line:#e2e8f0;
+    --accent:#23527c;
+    --accent-soft:#e8eff6;
+    --deep:#0e1a26;
+    --deep-2:#16293c;
+    --sky:#7fb0e0;
+    --warn:#b4472f;
+    --warn-soft:#fdf0ec;
+    --maxw:720px;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    font-size:16px;line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;overflow:hidden;
+    background:linear-gradient(158deg,#0a131d 0%,#0e1a26 34%,#16293c 72%,#1c3348 100%);
+    color:#fff;padding:56px 0 48px;
+  }
+  .hero::after{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(120% 80% at 50% 0%,rgba(127,176,224,.18),transparent 60%);
+  }
+  .river{position:absolute;inset:0;width:100%;height:100%;opacity:.55;pointer-events:none}
+  .hero .wrap{position:relative;z-index:2;text-align:center}
+  .mark{
+    width:56px;height:56px;margin:0 auto 18px;display:block;
+    filter:drop-shadow(0 6px 18px rgba(127,176,224,.35));
+  }
+  .hero h1{
+    margin:0;font-size:clamp(34px,9vw,46px);line-height:1.1;
+    letter-spacing:-.02em;font-weight:700;
+  }
+  .hero .sub{
+    margin:14px auto 0;max-width:26em;
+    font-size:clamp(17px,4.4vw,20px);line-height:1.55;
+    color:#dfe9f3;font-weight:500;
+  }
+  .hero .sub em{font-style:normal;color:var(--sky)}
+  .hero .lede{
+    margin:16px auto 0;max-width:30em;
+    font-size:15px;line-height:1.75;color:#9fb1c4;
+  }
+  .cta-row{
+    margin-top:28px;display:flex;flex-wrap:wrap;gap:12px;justify-content:center;
+  }
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    min-height:48px;padding:0 26px;border-radius:12px;
+    font-size:16px;font-weight:600;text-decoration:none;
+    transition:transform .18s ease,box-shadow .18s ease,background .18s ease;
+  }
+  .btn-primary{
+    background:var(--sky);color:#0a131d;
+    box-shadow:0 10px 26px rgba(127,176,224,.28);
+  }
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(127,176,224,.38)}
+  .btn-ghost{
+    color:#dfe9f3;border:1px solid rgba(223,233,243,.28);
+  }
+  .btn-ghost:hover{background:rgba(223,233,243,.08)}
+
+  /* ---------- stats ---------- */
+  .stats{
+    margin:-26px auto 0;position:relative;z-index:3;
+    display:grid;grid-template-columns:repeat(3,1fr);
+    background:var(--surface);border:1px solid var(--line);border-radius:16px;
+    box-shadow:0 12px 32px rgba(22,29,39,.08);overflow:hidden;
+  }
+  .stat{padding:18px 10px;text-align:center;border-right:1px solid var(--line)}
+  .stat:last-child{border-right:0}
+  .stat b{display:block;font-size:clamp(22px,6vw,28px);line-height:1.15;color:var(--accent);font-weight:700;letter-spacing:-.01em}
+  .stat span{display:block;margin-top:4px;font-size:12px;color:var(--ink-3);letter-spacing:.02em}
+
+  /* ---------- sections ---------- */
+  section{padding:44px 0 0}
+  .eyebrow{
+    display:flex;align-items:center;gap:10px;
+    font-size:13px;font-weight:600;color:var(--accent);letter-spacing:.06em;
+  }
+  .eyebrow::before{content:"";width:18px;height:2px;background:var(--accent);border-radius:2px}
+  h2{
+    margin:10px 0 0;font-size:clamp(22px,5.6vw,28px);line-height:1.3;
+    letter-spacing:-.01em;font-weight:700;
+    text-wrap:balance;
+  }
+  .note{margin:12px 0 0;color:var(--ink-2);font-size:15.5px;line-height:1.75}
+  .note strong{color:var(--ink);font-weight:600}
+
+  /* ---------- who ---------- */
+  .who{
+    margin-top:20px;background:var(--surface);border:1px solid var(--line);
+    border-radius:14px;padding:20px;
+  }
+  .who p{margin:0;font-size:15.5px;line-height:1.8;color:var(--ink-2)}
+  .who p + p{margin-top:12px}
+  .who .hl{color:var(--ink);font-weight:600}
+
+  /* ---------- compare ---------- */
+  .compare{margin-top:20px;display:grid;gap:14px}
+  @media(min-width:620px){.compare{grid-template-columns:1.15fr 1fr}}
+  .col{
+    background:var(--surface);border:1px solid var(--line);border-radius:14px;
+    padding:18px 20px;
+  }
+  .col h3{
+    margin:0 0 12px;font-size:14px;font-weight:700;letter-spacing:.02em;
+    display:flex;align-items:center;gap:8px;
+  }
+  .dot{width:8px;height:8px;border-radius:50%;flex:none}
+  .col.yes .dot{background:var(--accent)}
+  .col.no{background:#fbfcfd}
+  .col.no .dot{background:#c9d3de}
+  .col ul{margin:0;padding:0;list-style:none}
+  .col li{
+    position:relative;padding-left:18px;margin-top:9px;
+    font-size:15px;line-height:1.65;color:var(--ink-2);
+  }
+  .col li::before{
+    content:"";position:absolute;left:2px;top:.62em;
+    width:5px;height:5px;border-radius:50%;background:var(--accent);opacity:.5;
+  }
+  .col.no li{color:var(--ink-3)}
+  .col.no li::before{background:#c9d3de;opacity:1;text-decoration:none}
+
+  /* ---------- sources ---------- */
+  .cards{margin-top:20px;display:grid;gap:12px}
+  @media(min-width:620px){.cards{grid-template-columns:1fr 1fr}}
+  .card{
+    background:var(--surface);border:1px solid var(--line);border-radius:14px;
+    padding:18px 20px;transition:border-color .18s ease,transform .18s ease;
+  }
+  .card:hover{border-color:#c8d8e8;transform:translateY(-2px)}
+  .card .top{display:flex;align-items:baseline;gap:8px}
+  .card .n{
+    font-size:20px;font-weight:700;color:var(--accent);line-height:1;
+    font-variant-numeric:tabular-nums;
+  }
+  .card .k{font-size:15px;font-weight:600;color:var(--ink)}
+  .card p{margin:8px 0 0;font-size:14px;line-height:1.6;color:var(--ink-3)}
+
+  /* ---------- tiers ---------- */
+  .tiers{margin-top:20px;background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .tier{
+    display:flex;align-items:center;gap:14px;padding:16px 20px;
+    border-bottom:1px solid var(--line);
+  }
+  .tier:last-child{border-bottom:0}
+  .tier .badge{
+    flex:none;min-width:54px;height:30px;border-radius:8px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:13px;font-weight:700;letter-spacing:.03em;
+    background:var(--accent-soft);color:var(--accent);
+  }
+  .tier .txt{font-size:15px;line-height:1.55;color:var(--ink-2)}
+  .tier .txt b{color:var(--ink);font-weight:600}
+
+  /* ---------- quote ---------- */
+  .quote{
+    margin-top:20px;padding:22px 22px;border-radius:14px;
+    background:linear-gradient(150deg,#101d2a,#1b3348);color:#e8f0f7;
+  }
+  .quote p{margin:0;font-size:16.5px;line-height:1.8}
+  .quote p + p{margin-top:10px;font-size:14px;color:#93a8bd}
+
+  /* ---------- footer ---------- */
+  footer{margin-top:52px;padding:32px 0 44px;border-top:1px solid var(--line)}
+  .foot-cta{text-align:center}
+  .foot-cta .btn-primary{background:var(--accent);color:#fff;box-shadow:0 10px 26px rgba(35,82,124,.22)}
+  .foot-cta .btn-primary:hover{box-shadow:0 14px 32px rgba(35,82,124,.3)}
+  .foot-meta{
+    margin-top:28px;text-align:center;font-size:13px;line-height:1.9;color:var(--ink-3);
+  }
+  .foot-meta a{color:var(--ink-3);text-decoration:underline;text-underline-offset:3px}
+  .foot-meta a:hover{color:var(--accent)}
+  .disclaimer{
+    margin-top:18px;font-size:12.5px;line-height:1.75;color:#9aa7b4;
+    max-width:34em;margin-left:auto;margin-right:auto;
+  }
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <svg class="river" id="river" viewBox="0 0 720 420" preserveAspectRatio="xMidYMid slice" aria-hidden="true"></svg>
+  <div class="wrap">
+    <svg class="mark" viewBox="0 0 512 512" aria-hidden="true">
+      <rect width="512" height="512" rx="116" fill="#0f1720"/>
+      <path d="M256 92C271 199 313 241 420 256C313 271 271 313 256 420C241 313 199 271 92 256C199 241 241 199 256 92Z" fill="#7fb0e0"/>
+    </svg>
+    <h1>MedHOT</h1>
+    <p class="sub">中国医药市场的<em>每日热点站</em></p>
+    <p class="lede">41 个信源自动采集，AI 精选打分。<br>只留下对手里生意真正有影响的那几条。</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://medhot.netlify.app" target="_blank" rel="noopener">打开在线站 →</a>
+      <a class="btn btn-ghost" href="#what">它盯什么</a>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="stats">
+    <div class="stat"><b>41</b><span>信源</span></div>
+    <div class="stat"><b>4</b><span>类通道</span></div>
+    <div class="stat"><b>5</b><span>分钟看完</span></div>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <section id="what">
+    <div class="eyebrow">它是什么</div>
+    <h2>每天早上，一份只属于医药市场的简报</h2>
+    <p class="note">把过去 24 小时的内容收进来，先粗筛一遍、再让模型独立评两次分，挑出真正值得看的十几条，
+      写成中文标题和摘要；不同来源说的同一件事聚成一个事件；最后出一份按影响力排序的日报。</p>
+
+    <div class="who">
+      <p><span class="hl">它是给谁看的</span>：药企的市场经理、销售经理、准入与商务人员——
+        需要每天花五分钟搞清楚「我的品类今天有没有新变化」的人。</p>
+      <p><span class="hl">它解决什么</span>：不是信息不够，是噪音太多。政策原文藏在政府站列表第七页，
+        集采文件只在省级平台挂三天，竞品的 BD 消息要等媒体报道才知道——等你看到，已经晚了一步。</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">选稿方向</div>
+    <h2>会收什么，会丢掉什么</h2>
+    <p class="note">这不是关键词匹配，是一份写给「中国准入与竞争格局」的编辑标准。
+      <strong>学术期刊、预印本、基础机制研究不进来；讲不清跟中国准入关系的海外事务降权。</strong></p>
+
+    <div class="compare">
+      <div class="col yes">
+        <h3><i class="dot"></i>会重点收</h3>
+        <ul>
+          <li>药品的公司动态与业绩、BD 授权与交易</li>
+          <li>报产、获批、上市与撤市</li>
+          <li>医保、商保支付与价格机制</li>
+          <li>集采与省级招采平台动态</li>
+          <li>专利、合规与诉讼、竞品节奏</li>
+        </ul>
+      </div>
+      <div class="col no">
+        <h3><i class="dot"></i>会排除</h3>
+        <ul>
+          <li>医疗器械与耗材</li>
+          <li>中药饮片与品种保护</li>
+          <li>地方执行细则</li>
+          <li>学术论文与机制研究</li>
+          <li>跟中国准入无关的海外事务</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">信源</div>
+    <h2>四类通道，41 个源</h2>
+    <p class="note">全部实测可抓才收进来。抓不到的不写进名单——名单好看但跑不出内容，等于没有。</p>
+
+    <div class="cards">
+      <div class="card">
+        <div class="top"><span class="n">8</span><span class="k">药企官网</span></div>
+        <p>辉瑞中国、GSK 中国、欧加隆、恒瑞、翰森、石药、科伦、华润医药</p>
+      </div>
+      <div class="card">
+        <div class="top"><span class="n">2</span><span class="k">公告披露通道</span></div>
+        <p>巨潮资讯（A 股）、港交所披露易（H 股）——集采拟中标、BD 授权，公告比新闻早一天</p>
+      </div>
+      <div class="card">
+        <div class="top"><span class="n">4</span><span class="k">省级集采平台</span></div>
+        <p>北京医保局、江苏阳光采购、广东药品交易中心、天津药采中心</p>
+      </div>
+      <div class="card">
+        <div class="top"><span class="n">5</span><span class="k">疾控与感染资讯</span></div>
+        <p>急性呼吸道哨点监测、流感周报、Contagion、Outbreak News</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">怎么选出来</div>
+    <h2>门槛是校准出来的，不是拍出来的</h2>
+    <p class="note">按 60 条人工标注反复扫出来的一致性门槛，分成三档。改一次提示词，就要把库里的存量重评一遍，
+      否则新旧口径会混在一起。</p>
+
+    <div class="tiers">
+      <div class="tier">
+        <span class="badge">T1</span>
+        <span class="txt"><b>直接改变竞争格局或支付口径</b>，必看</span>
+      </div>
+      <div class="tier">
+        <span class="badge">T1.5</span>
+        <span class="txt"><b>有明确动作的品类与公司动态</b></span>
+      </div>
+      <div class="tier">
+        <span class="badge">T2</span>
+        <span class="txt"><b>值得知道的行业背景</b></span>
+      </div>
+    </div>
+
+    <div class="quote">
+      <p>抗菌药与抗感染是核心题材，不是边缘。</p>
+      <p>集采、医保支付、分级管理、处方点评、耐药监测、重点品类竞争，
+        都按正常权重甚至加权处理——不因为「这是海外事务」就降一档。</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">边界</div>
+    <h2>它不做什么</h2>
+    <p class="note">
+      <strong>不替你判断商业价值。</strong>它只保证「这条消息跟中国医药准入有关」，影响多大要看你的产品线。<br>
+      <strong>不追学术。</strong>要看机制和临床数据，去看期刊，这个站不干那件事。<br>
+      <strong>不做全覆盖。</strong>NMPA、卫健委上了防爬网关，纯抓取走不通，用行业媒体替补——所以官方原文可能迟一步。
+    </p>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot-cta">
+    <a class="btn btn-primary" href="https://medhot.netlify.app" target="_blank" rel="noopener">打开在线站 →</a>
+    <p class="foot-meta">
+      MedHOT · 中国医药市场的每日热点站<br>
+      引擎基于 <a href="https://github.com/KKKKhazix/AIHOT" target="_blank" rel="noopener">AIHOT</a>（MIT）改造
+    </p>
+    <p class="disclaimer">
+      个人项目，内容由程序自动采集与模型评分生成，仅供参考，不构成任何决策建议。
+      站点快照仅供阅读，抓取与分析服务运行在本地。
+    </p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var svg = document.getElementById('river');
+  if(!svg) return;
+  var W = 720, H = 420, NS = 'http://www.w3.org/2000/svg';
+  // 左侧 28 条线从不同高度出发，向右收束到中心一点附近，象征多源汇入精选
+  for (var i = 0; i < 28; i++) {
+    var t = i / 27;
+    var y0 = 30 + t * (H - 60);
+    var spread = (t - 0.5) * 2;               // -1..1
+    var yEnd = H * 0.5 + spread * 26;
+    var c1x = W * 0.34, c1y = y0 + (H * 0.5 - y0) * 0.24;
+    var c2x = W * 0.58, c2y = yEnd - (yEnd - H * 0.5) * 0.30;
+    var d = 'M -40 ' + y0.toFixed(1) +
+            ' C ' + c1x + ' ' + c1y.toFixed(1) + ', ' +
+                    c2x + ' ' + c2y.toFixed(1) + ', ' +
+                    (W + 40) + ' ' + yEnd.toFixed(1);
+    var p = document.createElementNS(NS, 'path');
+    p.setAttribute('d', d);
+    p.setAttribute('fill', 'none');
+    p.setAttribute('stroke', i % 7 === 0 ? '#7fb0e0' : '#5f8fbf');
+    p.setAttribute('stroke-width', i % 7 === 0 ? '1.35' : '0.85');
+    p.setAttribute('stroke-opacity', (i % 7 === 0 ? 0.42 : 0.16).toFixed(2));
+    p.setAttribute('stroke-linecap', 'round');
+    svg.appendChild(p);
+  }
+})();
+</script>
+</body>
+</html>
